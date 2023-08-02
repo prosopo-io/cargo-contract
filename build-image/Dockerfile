@@ -1,7 +1,7 @@
 FROM docker.io/bitnami/minideb:bullseye-amd64 as slimmed-rust
 
 # The rust version to use
-ARG RUST_VERSION=stable
+ARG RUST_VERSION=1.69
 # The cargo contract version to use
 ARG CARGO_CONTRACT_VERSION=3.1.0
 # Url to the cargo-contract repository to install from

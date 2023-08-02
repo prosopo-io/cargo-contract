@@ -50,7 +50,9 @@ RUN set -eux \
     && wget "$url" \
     && chmod +x rustup-init \
     && ./rustup-init -y --no-modify-path --profile minimal --component rust-src rustfmt --default-toolchain $RUST_VERSION  \
-    && rustup component add clippy --toolchain $RUST_VERSION \
+    && rustup default $RUST_VERSION \
+    && rustup component add rustfmt \
+    && rustup component add clippy \
     && rm rustup-init \
     && chmod -R a+w $RUSTUP_HOME $CARGO_HOME \
     && rustup --version \
@@ -105,6 +107,7 @@ FROM slimmed-rust as ink-dev
 COPY --from=cc-builder /usr/local/cargo/bin/cargo-contract /usr/local/bin/cargo-contract
 COPY --from=cc-builder /usr/local/cargo/bin/cargo-clippy /usr/local/bin/cargo-clippy
 COPY --from=cc-builder /usr/local/cargo/bin/clippy-driver /usr/local/bin/clippy-driver
+COPY --from=cc-builder /usr/local/cargo/bin/rustfmt /usr/local/bin/rustfmt
 
 WORKDIR /contract
 

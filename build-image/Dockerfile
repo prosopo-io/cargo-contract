@@ -1,7 +1,7 @@
 FROM docker.io/bitnami/minideb:bullseye-amd64 as slimmed-rust
 
 # The rust version to use
-ARG RUST_VERSION=1.69
+ARG RUST_VERSION=1.68
 # The cargo contract version to use
 ARG CARGO_CONTRACT_VERSION=3.1.0
 # Url to the cargo-contract repository to install from
@@ -111,5 +111,9 @@ COPY --from=cc-builder /usr/local/cargo/bin/rustfmt /usr/local/bin/rustfmt
 
 WORKDIR /contract
 
-# default entry point
-ENTRYPOINT ["cargo", "contract"]
+ENV CARGO_CACHE=/cargo-cache
+
+VOLUME ${CARGO_CACHE}
+
+COPY entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["bash", "/entrypoint.sh"]

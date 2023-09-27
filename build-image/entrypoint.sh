@@ -9,6 +9,8 @@ set -o pipefail # exit if any command in a pipe fails
 mkdir -p $CARGO_CACHE/registry
 mkdir -p $CARGO_CACHE/git
 # symlink the git and registry from cargo dir to the cache dir
+rm $CARGO_HOME/registry || true
+rm $CARGO_HOME/git || true
 ln -s $CARGO_CACHE/registry $CARGO_HOME/registry
 ln -s $CARGO_CACHE/git $CARGO_HOME/git
 

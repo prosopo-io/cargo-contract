@@ -10,4 +10,5 @@ mkdir -p $CARGO_CACHE/registry
 # symlink the registry from cargo dir to the cache dir
 ln -s $CARGO_CACHE/registry $CARGO_HOME/registry
 
+# run cargo contract with supplied args
 cargo contract "$@"

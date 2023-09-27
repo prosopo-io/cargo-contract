@@ -3,21 +3,11 @@
 # set -x # print commands
 set -e # exit on error
 set -u # exit on undefined variable
+set -o pipefail # exit if any command in a pipe fails
 
-# symlink the cargo files to the cargo home directory
-names=("bin" "env")
-for name in "${names[@]}"; do
-    rm $CARGO_CACHE/$name || true
-    ln -s $CARGO_HOME/$name $CARGO_CACHE/$name
-done
+# create the registry dir in the cache if not already
+mkdir -p $CARGO_CACHE/registry
+# symlink the registry from cargo dir to the cache dir
+ln -s $CARGO_CACHE/registry $CARGO_HOME/registry
 
-# put the cache in the path
-export PATH=$CARGO_CACHE/bin:$PATH
-
-# run cargo contract
 cargo contract "$@"
-
-# after cargo contract is run, remove the symlinks as there's no need to persist these
-for name in "${names[@]}"; do
-    rm $CARGO_CACHE/$name
-done

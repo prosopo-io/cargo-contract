@@ -84,7 +84,7 @@ RUN apt-get -y update && apt-get -y install gcc=${GCC_VERSION} g++=${G_VERSION} 
     COMMAND="cargo install cargo-contract --locked --version ${CARGO_CONTRACT_VERSION}" ;\
     fi \
     && if [ -n "$CARGO_CONTRACT_BRANCH" ] && [ -n "$CARGO_CONTRACT_GIT" ]; then \
-    COMMAND="${COMMAND} --branch ${CARGO_CONTRACT_BRANCH}" ; \
+    COMMAND="${COMMAND} --branch ${CARGO_CONTRACT_BRANCH} --locked" ; \
     fi \
     && if [ -n "$CARGO_CONTRACT_REV" ] && [ -n "$CARGO_CONTRACT_GIT" ]; then \
     COMMAND="${COMMAND} --rev ${CARGO_CONTRACT_REV}" ; \

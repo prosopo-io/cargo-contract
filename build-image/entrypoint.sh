@@ -3,7 +3,7 @@
 set -e # exit on error
 set -u # exit on undefined variable
 set -o pipefail # exit if any command in a pipe fails
-sex -x # print commands
+set -x # print commands
 
 # symlink the git and registry from cargo dir to the cache dir
 echo "Removing symlinks for cargo cache from previous runs..."

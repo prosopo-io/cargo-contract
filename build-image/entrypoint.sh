@@ -10,5 +10,4 @@ ln -sf $CARGO_CACHE/registry $CARGO_HOME/registry
 ln -sf $CARGO_CACHE/git $CARGO_HOME/git
 
 # run cargo contract with supplied args
-echo "Running cargo contract..."
-cargo "$@"
+"$@"

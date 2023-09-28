@@ -16,4 +16,4 @@ ln -s $CARGO_CACHE/git $CARGO_HOME/git
 
 # run cargo contract with supplied args
 echo "Running cargo contract..."
-cargo contract "$@"
+cargo "$@"

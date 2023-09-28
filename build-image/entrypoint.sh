@@ -1,14 +1,14 @@
 #! /bin/bash
 
-# set -x # print commands
 set -e # exit on error
 set -u # exit on undefined variable
 set -o pipefail # exit if any command in a pipe fails
+sex -x # print commands
 
 # symlink the git and registry from cargo dir to the cache dir
 echo "Removing symlinks for cargo cache from previous runs..."
-rm $CARGO_CACHE/registry || true
-rm $CARGO_CACHE/git || true
+rm $CARGO_HOME/registry || true
+rm $CARGO_HOME/git || true
 
 echo "Adding symlinks for cargo cache..."
 ln -s $CARGO_CACHE/registry $CARGO_HOME/registry
